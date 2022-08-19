@@ -1,2 +1,2 @@
-# qmech
+# QMech
 Quantum Mechanics Lab Code
