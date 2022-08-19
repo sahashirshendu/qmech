@@ -30,12 +30,12 @@
 
       subroutine hmg(h,d,e,np)
       real L,h(np,np),d(np),e(np),v(np)
-      xm = 0.
+      x0 = 0.
       L = 10.
       a = L/(np - 1)
       pi = 4.*atan(1.)
       do i = 1,np
-        v(i) = sin(pi * (xm + (i-1)*a) / L)
+        v(i) = sin(pi * (x0 + (i-1)*a) / L)
         d(i) = v(i) + 2./a**2
         e(i) = - 1./a**2
       end do
