@@ -34,14 +34,14 @@
       L = 10.
       a = L/(np - 1)
       pi = 4.*atan(1.)
-      do i = 1,np
+      do 11 i = 1,np
         v(i) = sin(pi * (x0 + (i-1)*a) / L)
         d(i) = v(i) + 2./a**2
         e(i) = - 1./a**2
-      end do
+11    continue
       h = 0.
-      do i = 1,np
-        do j = 1,np
+      do 12 i = 1,np
+        do 13 j = 1,np
           if (i.eq.j) then
             h(i,j) = d(i)
             if (j.gt.1) then
@@ -51,8 +51,8 @@
               h(i,j+1) = e(i)
             end if
           end if
-        end do
-      end do
+  13    continue
+12    continue
       end
 
 c TQLI finds the eigenvalues and eigenvectors of a tridiagonal matrix
