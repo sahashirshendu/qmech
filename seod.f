@@ -40,12 +40,16 @@
         e(i) = - 1./a**2
       end do
       h = 0.
-      do i = 1, np
-        do j = 1, np
-          h(i,j) = d(i)
-          if ((j.gt.1).and.(j.lt.n)) then
-            h(i,j-1) = e(i)
-            h(i,j+1) = e(i)
+      do i = 1,np
+        do j = 1,np
+          if (i.eq.j) then
+            h(i,j) = d(i)
+            if (j.gt.1) then
+              h(i,j-1) = e(i)
+            end if
+            if (j.lt.np) then
+              h(i,j+1) = e(i)
+            end if
           end if
         end do
       end do
