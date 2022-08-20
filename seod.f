@@ -6,7 +6,7 @@
       do 11 i = 1, np
         write(*,*) (h(i,j), j=1,np)
 11    continue
-      a=0.
+      a = 0.
       do 12 i=1,np
         a(i,i)=1.
 12    continue
