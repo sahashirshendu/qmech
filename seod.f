@@ -2,7 +2,7 @@
       parameter(np=10)
       real a(np,np),h(np,np),d(np),e(np),f(np)
       call hmg(h,d,e,np)
-      write(*,*) "Hamiltonian :"
+      write(*,*) "Hamiltonian -"
       do 11 i = 1, np
         write(*,*) (h(i,j), j=1,np)
 11    continue
