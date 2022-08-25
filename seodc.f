@@ -29,8 +29,8 @@
 
 c     gnuplot
       ns = 5
-      de = (d(ns) - d(1)) / (ns - 1)
-      open(10, file='seod.gnu')
+      de = (d(ns)-d(1)) / (ns-1)
+      open(10,file='seod.gnu')
       write(10,*) "set term post"
       write(10,*) "set out 'seod.ps'"
       write(10,*) "set nokey"
