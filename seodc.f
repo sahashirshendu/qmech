@@ -1,7 +1,7 @@
       program seod
       parameter(np=100)
-      real a(np,np),h(np,np),d(np),e(np),f(np),v(np),de
-      call hmg(h,d,e,v,np)
+      real a(np,np),h(np,np),d(np),e(np),f(np),de
+      call hmg(h,d,e,np)
       write(*,*) "Hamiltonian -"
       do 11 i = 1, np
         write(*,*) (h(i,j), j=1,np)
@@ -50,7 +50,7 @@ c     gnuplot
       end do
       end
 
-      subroutine hmg(h,d,e,v,np)
+      subroutine hmg(h,d,e,np)
       real L,h(np,np),d(np),e(np),v(np)
       x0 = 0.
       L = 10.
