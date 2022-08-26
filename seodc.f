@@ -34,7 +34,7 @@ c     gnuplot
       write(10,*) "set out 'seod.ps'"
       write(10,*) "set nokey"
       write(10,*) "set style data lines"
-      write(10,*) "set yrange [",0.0,":",d(ns)*1.20,"]"
+      write(10,*) "set yrange [0.0:",d(ns)*1.20,"]"
       write(10,*) "plot '-' u 1:(",d(1),"+$2), \"
       do i = 2, ns - 1
         write(10,*) "'-' u 1:(",d(i),"+$2), \"
