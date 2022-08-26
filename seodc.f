@@ -1,5 +1,5 @@
       program seod
-      parameter(np=10)
+      parameter(np=100)
       real a(np,np),h(np,np),d(np),e(np),f(np),de
       call hmg(h,d,e,np)
       write(*,*) "Hamiltonian -"
@@ -29,18 +29,17 @@
 
 c     gnuplot
       ns = 5
-      de = (d(ns)-d(1)) / (ns-1)
       open(10,file='seod.gnu')
       write(10,*) "set term post"
       write(10,*) "set out 'seod.ps'"
       write(10,*) "set nokey"
       write(10,*) "set style data lines"
-      write(10,*) "set yrange [",0.0,":",d(ns)+de,"]"
-      write(10,*) "plot '-' u 1:(",d(1),"+",de,"*$2), \"
+      write(10,*) "set yrange [",0.0,":",d(ns)*1.20,"]"
+      write(10,*) "plot '-' u 1:(",d(1),"+$2), \"
       do i = 2, ns - 1
-        write(10,*) "'-' u 1:(",d(i),"+",de,"*$2), \"
+        write(10,*) "'-' u 1:(",d(i),"+$2), \"
       end do
-      write(10,*) "'-' u 1:(",d(ns),"+",de,"*$2)"
+      write(10,*) "'-' u 1:(",d(ns),"+$2)"
       do 17 i=1,ns
         do 18 j = 1, np
           write(10,*) j-1, a(j,i)
