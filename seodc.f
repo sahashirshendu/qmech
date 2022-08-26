@@ -77,14 +77,11 @@ c     gnuplot
 12    continue
       end
 
-c TQLI finds the eigenvalues and eigenvectors of a tridiagonal matrix
+c TQL2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
       subroutine tql2(nm,n,d,e,z,ierr)
-      integer i,j,k,l,m,n,ii,l1,l2,nm,mml,ierr
       real d(n),e(n),z(nm,n)
-      real c,c2,c3,dl1,el1,f,g,h,p,r,s,s2,tst1,tst2,pythag
       ierr = 0
       if (n .eq. 1) go to 1001
-c
       do 100 i = 2, n
   100 e(i-1) = e(i)
       f = 0.0e0
@@ -146,7 +143,6 @@ c
          if (tst2 .gt. tst1) go to 130
   220    d(l) = d(l) + f
   240 continue
-
       do 300 ii = 2, n
          i = ii - 1
          k = i
@@ -170,12 +166,10 @@ c
  1001 return
       end
 
-      real function pythag(a,b)
-      real a,b
-      real p,r,s,t,u
-      p = dmax1(abs(a),abs(b))
+      function pythag(a,b)
+      p = amax1(abs(a),abs(b))
       if (p .eq. 0.0e0) go to 20
-      r = (dmin1(abs(a),abs(b))/p)**2
+      r = (amin1(abs(a),abs(b))/p)**2
    10 continue
          t = 4.0e0 + r
          if (t .eq. 4.0e0) go to 20
