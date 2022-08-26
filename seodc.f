@@ -1,5 +1,5 @@
       program seod
-      parameter(np=100)
+      parameter(np=10)
       real a(np,np),h(np,np),d(np),e(np),f(np),de
       call hmg(h,d,e,np)
       write(*,*) "Hamiltonian -"
@@ -41,13 +41,13 @@ c     gnuplot
         write(10,*) "'-' u 1:(",d(i),"+",de,"*$2), \"
       end do
       write(10,*) "'-' u 1:(",d(ns),"+",de,"*$2)"
-      do i = 1, ns
-        do j = 1, np
+      do 17 i=1,ns
+        do 18 j = 1, np
           write(10,*) j-1, a(j,i)
-        end do
+18      continue
         write(10,*) 0, a(1,i)
         write(10,*), "e"
-      end do
+17    continue
       end
 
       subroutine hmg(h,d,e,np)
