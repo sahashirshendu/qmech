@@ -1,5 +1,5 @@
       program seod
-      parameter(np=100)
+      parameter(np=10)
       real a(np,np),h(np,np),d(np),e(np),f(np),de
       call hmg(h,d,e,np)
       write(*,*) "Hamiltonian -"
