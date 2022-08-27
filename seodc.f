@@ -28,21 +28,20 @@
 16    continue
 
 c     gnuplot
-      ns = 5
       open(10,file='seod.gnu')
       open(11,file='seod')
       write(10,*) "set term post"
       write(10,*) "set out 'seod.ps'"
       write(10,*) "set nokey"
       write(10,*) "plot 'seod' u 1:(",d(1),"+$2) w l, \"
-      do i = 2, ns - 1
+      do i = 2, 5-1
         write(10,*) "'' u 1:(",d(i),"+$", i+1, ") w l, \"
       end do
-      write(10,*) "'' u 1:(",d(ns),"+$", ns+1, ") w l"
+      write(10,*) "'' u 1:(",d(5),"+$", 5+1, ") w l"
       do 18 j = 1, np
-        write(11,*) j-1, (a(j,i), i = 1,ns)
+        write(11,*) j-1, (a(j,i), i = 1,5)
 18    continue
-      write(11,*) 0, (a(1,i), i = 1,ns)
+      write(11,*) 0, (a(1,i), i = 1,5)
       end
 
       subroutine hmg(h,d,e,np)
