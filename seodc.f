@@ -39,10 +39,10 @@ c     gnuplot
         write(10,*) "'' u 1:(",d(i),"+$", i+1, ") w l, \"
       end do
       write(10,*) "'' u 1:(",d(ns),"+$", ns+1, ") w l"
-        do 18 j = 1, np
-          write(11,*) j-1, (a(j,i), i = 1,ns)
-18      continue
-        write(11,*) 0, (a(1,i), i = 1,ns)
+      do 18 j = 1, np
+        write(11,*) j-1, (a(j,i), i = 1,ns)
+18    continue
+      write(11,*) 0, (a(1,i), i = 1,ns)
       end
 
       subroutine hmg(h,d,e,np)
