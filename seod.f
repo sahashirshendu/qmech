@@ -19,8 +19,7 @@
 13        continue
 14      continue
         write(*,*) "Eigenvalue", i, " =", d(i)
-        write(*,*) "    Vector", "          Mtx * Vec",
-     & "          Ratio"
+        write(*,*) "    Vector", "         Mtx * Vec", "          Ratio"
         do 15 j=1,n
           write(*,*) a(j,i),f(j),f(j)/a(j,i)
 15      continue
