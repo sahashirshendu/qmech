@@ -1,27 +1,27 @@
       program seod
-      parameter(np=10)
-      real a(np,np),h(np,np),d(np),e(np),f(np),de
-      call hmg(h,d,e,np)
+      parameter(n=10)
+      real a(n,n),h(n,n),d(n),e(n),f(n),de
+      call hmg(h,d,e,n)
       write(*,*) "Hamiltonian -"
-      do 11 i = 1, np
-        write(*,*) (h(i,j), j=1,np)
+      do 11 i = 1, n
+        write(*,*) (h(i,j), j=1,n)
 11    continue
       a = 0.
-      do 12 i=1,np
+      do 12 i=1,n
         a(i,i)=1.
 12    continue
-      call tql2(np,np,d,e,a,ierr)
-      do 16 i=1,np
-        do 14 j=1,np
+      call tql2(n,n,d,e,a,ierr)
+      do 16 i=1,n
+        do 14 j=1,n
           f(j)=0.0
-          do 13 k=1,np
+          do 13 k=1,n
             f(j)=f(j)+h(j,k)*a(k,i)
 13        continue
 14      continue
         write(*,*) "Eigenvalue", i, " =", d(i)
         write(*,*) "    Vector", "          Mtx * Vec",
      & "          Ratio"
-        do 15 j=1,np
+        do 15 j=1,n
           write(*,*) a(j,i),f(j),f(j)/a(j,i)
 15      continue
         write(*,*) ""
@@ -38,32 +38,32 @@ c     gnuplot
         write(10,*) "'' u 1:(",d(i),"+$", i+1, ") w l, \"
       end do
       write(10,*) "'' u 1:(",d(5),"+$", 5+1, ") w l"
-      do 18 j = 1, np
+      do 18 j = 1, n
         write(11,*) j-1, (a(j,i), i = 1,5)
 18    continue
       write(11,*) 0, (a(1,i), i = 1,5)
       end
 
-      subroutine hmg(h,d,e,np)
-      real L,h(np,np),d(np),e(np),v(np)
+      subroutine hmg(h,d,e,n)
+      real L,h(n,n),d(n),e(n),v(n)
       x0 = 0.
       L = 10.
-      a = L/(np - 1)
+      a = L/(n - 1)
       pi = 4.*atan(1.)
-      do 11 i = 1,np
+      do 11 i = 1,n
         v(i) = sin(pi * (x0 + (i-1)*a) / L)
         d(i) = v(i) + 2./a**2
         e(i) = - 1./a**2
 11    continue
       h = 0.
-      do 12 i = 1,np
-        do 13 j = 1,np
+      do 12 i = 1,n
+        do 13 j = 1,n
           if (i.eq.j) then
             h(i,j) = d(i)
             if (j.gt.1) then
               h(i,j-1) = e(i)
             end if
-            if (j.lt.np) then
+            if (j.lt.n) then
               h(i,j+1) = e(i)
             end if
           end if
