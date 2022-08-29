@@ -10,7 +10,7 @@
       do 12 i=1,n
         a(i,i)=1.
 12    continue
-      call tqli(d,e,n,n,a)
+      call tqli(n,n,d,e,a,ierr)
       do 16 i=1,n
         do 14 j=1,n
           f(j)=0.0
@@ -55,62 +55,90 @@
       end
 
 c TQLI finds the eigenvalues and eigenvectors of a tridiagonal matrix
-      subroutine tqli(d,e,n,np,z)
-      dimension d(np),e(np),z(np,np)
-      if (n.gt.1) then
-        do 11 i=2,n
-          e(i-1)=e(i)
-11      continue
-        e(n)=0.
-        do 15 l=1,n
-          iter=0
-1         do 12 m=l,n-1
-            dd=abs(d(m))+abs(d(m+1))
-            if (abs(e(m))+dd.eq.dd) go to 2
-12        continue
-          m=n
-2         if(m.ne.l)then
-            if(iter.eq.30)stop 'too many iterations'
-            iter=iter+1
-            g=(d(l+1)-d(l))/(2.*e(l))
-            r=sqrt(g**2+1.)
-            g=d(m)-d(l)+e(l)/(g+sign(r,g))
-            s=1.
-            c=1.
-            p=0.
-            do 14 i=m-1,l,-1
-              f=s*e(i)
-              b=c*e(i)
-              if(abs(f).ge.abs(g))then
-                c=g/f
-                r=sqrt(c**2+1.)
-                e(i+1)=f*r
-                s=1./r
-                c=c*s
-              else
-                s=f/g
-                r=sqrt(s**2+1.)
-                e(i+1)=g*r
-                c=1./r  
-                s=s*c
-              endif
-              g=d(i+1)-p
-              r=(d(i)-g)*s+2.*c*b
-              p=s*r
-              d(i+1)=g+p
-              g=c*r-b
-              do 13 k=1,n
-                f=z(k,i+1)
-                z(k,i+1)=s*z(k,i)+c*f
-                z(k,i)=c*z(k,i)-s*f
-13            continue
-14          continue
-            d(l)=d(l)-p
-            e(l)=g
-            e(m)=0.
-            go to 1
-          endif
-15      continue
-      endif
-      return
+      subroutine tqli(nm,n,d,e,z,ierr)
+      real d(n),e(n),z(nm,n)
+      ierr = 0
+      if (n .eq. 1) go to 1001
+      do 100 i = 2, n
+  100 e(i-1) = e(i)
+      f = 0.0e0
+      tst1 = 0.0e0
+      e(n) = 0.0e0
+      do 240 l = 1, n
+        j = 0
+        h = abs(d(l)) + abs(e(l))
+        if (tst1 .lt. h) tst1 = h
+        do 110 m = l, n
+          tst2 = tst1 + abs(e(m))
+          if (tst2 .eq. tst1) go to 120
+  110   continue
+  120   if (m .eq. l) go to 220
+  130   if (j .eq. 30) go to 1000
+        j = j + 1
+        l1 = l + 1
+        l2 = l1 + 1
+        g = d(l)
+        p = (d(l1) - g) / (2.0e0 * e(l))
+        r = sqrt(p**2+1.0e0**2)
+        d(l) = e(l) / (p + sign(r,p))
+        d(l1) = e(l) * (p + sign(r,p))
+        dl1 = d(l1)
+        h = g - d(l)
+        if (l2 .gt. n) go to 145
+        do 140 i = l2, n
+  140   d(i) = d(i) - h
+  145   f = f + h
+        p = d(m)
+        c = 1.0e0
+        c2 = c
+        el1 = e(l1)
+        s = 0.0e0
+        mml = m - l
+        do 200 ii = 1, mml
+          c3 = c2
+          c2 = c
+          s2 = s
+          i = m - ii
+          g = c * e(i)
+          h = c * p
+          r = sqrt(p**2+(e(i))**2)
+          e(i+1) = s * r
+          s = e(i) / r
+          c = p / r
+          p = c * d(i) - s * g
+          d(i+1) = h + s * (c * g + s * d(i))
+          do 180 k = 1, n
+            h = z(k,i+1)
+            z(k,i+1) = s * z(k,i) + c * h
+            z(k,i) = c * z(k,i) - s * h
+  180     continue
+  200   continue
+        p = -s * s2 * c3 * el1 * e(l) / dl1
+        e(l) = s * p
+        d(l) = c * p
+        tst2 = tst1 + abs(e(l))
+        if (tst2 .gt. tst1) go to 130
+  220   d(l) = d(l) + f
+  240 continue
+      do 300 ii = 2, n
+        i = ii - 1
+        k = i
+        p = d(i)
+        do 260 j = ii, n
+          if (d(j) .ge. p) go to 260
+          k = j
+          p = d(j)
+  260   continue
+        if (k .eq. i) go to 300
+        d(k) = d(i)
+        d(i) = p
+        do 280 j = 1, n
+          p = z(j,i)
+          z(j,i) = z(j,k)
+          z(j,k) = p
+  280   continue
+  300 continue
+      go to 1001
+ 1000 ierr = l
+ 1001 return
       end

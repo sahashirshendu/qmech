@@ -10,7 +10,7 @@
       do 12 i=1,n
         a(i,i)=1.
 12    continue
-      call tql2(n,n,d,e,a,ierr)
+      call tqli(n,n,d,e,a,ierr)
       do 16 i=1,n
         do 14 j=1,n
           f(j)=0.0
@@ -70,8 +70,8 @@ c     gnuplot
 12    continue
       end
 
-c TQL2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
-      subroutine tql2(nm,n,d,e,z,ierr)
+c tqli finds the eigenvalues and eigenvectors of a tridiagonal matrix
+      subroutine tqli(nm,n,d,e,z,ierr)
       real d(n),e(n),z(nm,n)
       ierr = 0
       if (n .eq. 1) go to 1001
