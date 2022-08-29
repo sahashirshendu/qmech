@@ -3,7 +3,7 @@
       real a(n,n),h(n,n),d(n),e(n),f(n)
       call hmg(h,d,e,n)
       write(*,*) "Hamiltonian -"
-      do 11 i = 1, n
+      do 11 i = 1,n
         write(*,*) (h(i,j), j=1,n)
 11    continue
       a = 0.
