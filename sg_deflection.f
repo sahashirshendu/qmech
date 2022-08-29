@@ -1,5 +1,4 @@
       program deflection
-c Deflection in Stern-Gerlach Experiment
       double precision k, bm, bg, l, r, T, g, d
       k = 1.381e-23 ! Boltzmann Constant
       bm = 9.274e-24 ! Bohr Magneton
