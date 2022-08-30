@@ -1,5 +1,5 @@
       program deflection
-      double precision k, bm, bg, l, r, T, g, d
+      real k, bm, bg, l, r, T, g, d
       k = 1.381e-23 ! Boltzmann Constant
       bm = 9.274e-24 ! Bohr Magneton
       print *, "Magnetic field gradient (T/m) ="
