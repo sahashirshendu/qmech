@@ -1,4 +1,8 @@
       program seod
+      ! Commands
+      ! gfortran seodc.f
+      ! gnuplot seod.gnu
+      ! ps2pdf seod.ps
       parameter(n=10)
       real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
       call hmg(h,x,d,e,n)
