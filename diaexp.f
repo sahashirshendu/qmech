@@ -73,15 +73,15 @@ c	starting diagonalization
 13        continue
 14      continue
         write (*,*) 'eigenvalue',i,' =',d(i)
-        write (*,*) ' vector','            mtrx*vect.','       ratio'
+        ! write (*,*) ' vector','            mtrx*vect.','       ratio'
         do 15 j=1,np
           if (abs(a(j,i)).lt.tiny) then
-            write (*,*) a(j,i),f(j),'div. by 0'
+            ! write (*,*) a(j,i),f(j),'div. by 0'
           else
-            write (*,*) a(j,i),f(j),f(j)/a(j,i)
+            ! write (*,*) a(j,i),f(j),f(j)/a(j,i)
           endif
 15      continue
-        write (*,*) ''
+        ! write (*,*) ''
 16    continue
 c writing the ground state wave function and x values
 
