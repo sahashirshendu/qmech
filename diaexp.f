@@ -9,17 +9,17 @@ c	specified potential v(x)=sin(pi*x/L),L=2*a,-a<=x<=a,a=1
 
       open(1,file="gsi")
       pi=4*atan(1.0)
-      Le=2.0
+      Le=10.0
       delta = (Le/(np-1))
       q=1.0/delta**2    !2.41e-37
-      x0=-1 !-a
+      x0=0 !-a
 c	getting potential array
       do 100 i=1,np
       ! X(i)=i*(Le/np)
       ! u(i)=sin(pi*X(i)/Le)
       X(i)=x0+(i-1)*delta
-      ! u(i) = sin(pi*((i-1)*delta)/Le)
-      u(i) = 0.0
+      u(i) = sin(pi*((i-1)*delta)/Le)
+      ! u(i) = 0.0
       d(i) = 2*q+u(i) ! <---->
       e(i) = - q
 !	write(*,*)u(i)
@@ -52,7 +52,7 @@ c giving input for the matrix H
 
 c	printing elements of H
       do 103 i=1,np
-      write(*,*)(a(i,j),j=1,np)
+      ! write(*,*)(a(i,j),j=1,np)
 103   continue
 	
 c	starting diagonalization	
@@ -64,7 +64,7 @@ c	starting diagonalization
       ! call tred2(a,np,np,d,e)
       ! call tqli(d,e,np,np,a)
       call tql2(np,np,d,e,a,ierr)
-      write (*,*) 'eigenvectors for a real symmetric matrix'
+      ! write (*,*) 'eigenvectors for a real symmetric matrix'
       do 16 i=1,np
         do 14 j=1,np
           f(j)=0.0
@@ -72,7 +72,7 @@ c	starting diagonalization
             f(j)=f(j)+c(j,k)*a(k,i)
 13        continue
 14      continue
-        write (*,*) 'eigenvalue',i,' =',d(i)
+        ! write (*,*) 'eigenvalue',i,' =',d(i)
         ! write (*,*) ' vector','            mtrx*vect.','       ratio'
         do 15 j=1,np
           if (abs(a(j,i)).lt.tiny) then
