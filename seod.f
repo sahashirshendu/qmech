@@ -66,10 +66,6 @@
 12    continue
       end
 
-c Source:
-c https://netlib.org/seispack/tql2.f
-c https://netlib.org/seispack/pythag.f
-
 c finds the eigenvalues and eigenvectors of a tridiagonal matrix
       subroutine tql2(nm,n,d,e,z,ierr)
       real d(n),e(n),z(nm,n)
