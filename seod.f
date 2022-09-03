@@ -1,5 +1,9 @@
       program seod
-      parameter(n=10)
+      ! Commands
+      ! gfortran seodc.f
+      ! gnuplot seod.gnu
+      ! ps2pdf seod.ps
+      parameter(n=100)
       real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
       call hmg(h,x,d,e,n)
       write(*,*) "Hamiltonian -"
@@ -25,6 +29,12 @@
 15      continue
         write(*,*) ""
 16    continue
+
+      open(11,file='dseod')
+      ! open(11,file='dseod0')
+      do 18 i = 1, n
+        write(11,*) x(i), a(i, 1)
+18    continue
       end
 
       subroutine hmg(h,x,d,e,n)
@@ -36,6 +46,7 @@
       do 11 i = 1,n
         x(i) = x0+(i-1)*a
         v(i) = sin(pi * ((i-1)*a) / L)
+        ! v(i) = 0.0
         d(i) = v(i) + 2./a**2
         e(i) = - 1./a**2
 11    continue
