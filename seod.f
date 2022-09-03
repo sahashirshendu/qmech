@@ -55,7 +55,7 @@
 12    continue
       end
 
-c tql2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
+c finds the eigenvalues and eigenvectors of a tridiagonal matrix
       subroutine tql2(nm,n,d,e,z,ierr)
       real d(n),e(n),z(nm,n)
       ierr = 0
@@ -80,7 +80,7 @@ c tql2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
         l2 = l1 + 1
         g = d(l)
         p = (d(l1) - g) / (2.0e0 * e(l))
-        r = sqrt(p**2+1.0e0**2)
+        r = pythag(p,1.0e0)
         d(l) = e(l) / (p + sign(r,p))
         d(l1) = e(l) * (p + sign(r,p))
         dl1 = d(l1)
@@ -102,7 +102,7 @@ c tql2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
           i = m - ii
           g = c * e(i)
           h = c * p
-          r = sqrt(p**2+(e(i))**2)
+          r = pythag(p,e(i))
           e(i+1) = s * r
           s = e(i) / r
           c = p / r
@@ -142,4 +142,21 @@ c tql2 finds the eigenvalues and eigenvectors of a tridiagonal matrix
       go to 1001
  1000 ierr = l
  1001 return
+      end
+
+c finds sqrt(a**2+b**2)
+      real function pythag(a,b)
+      p = amax1(abs(a),abs(b))
+      if (p .eq. 0.0e0) go to 20
+      r = (amin1(abs(a),abs(b))/p)**2
+   10 continue
+         t = 4.0e0 + r
+         if (t .eq. 4.0e0) go to 20
+         s = r/t
+         u = 1.0e0 + 2.0e0*s
+         p = u*p
+         r = (s/u)**2 * r
+      go to 10
+   20 pythag = p
+      return
       end
