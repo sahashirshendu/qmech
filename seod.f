@@ -1,7 +1,7 @@
       program seod
       parameter(n=10)
-      real a(n,n),h(n,n),d(n),e(n),f(n)
-      call hmg(h,d,e,n)
+      real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
+      call hmg(h,x,d,e,n)
       write(*,*) "Hamiltonian -"
       do 11 i = 1,n
         write(*,*) (h(i,j), j=1,n)
@@ -27,14 +27,15 @@
 16    continue
       end
 
-      subroutine hmg(h,d,e,n)
-      real L,h(n,n),d(n),e(n),v(n)
+      subroutine hmg(h,x,d,e,n)
+      real L,h(n,n),d(n),e(n),v(n),x(n)
       x0 = 0.
       L = 10.
       a = L/(n - 1)
       pi = 4.*atan(1.)
       do 11 i = 1,n
-        v(i) = sin(pi * (x0 + (i-1)*a) / L)
+        x(i) = x0+(i-1)*a
+        v(i) = sin(pi * ((i-1)*a) / L)
         d(i) = v(i) + 2./a**2
         e(i) = - 1./a**2
 11    continue
