@@ -1,4 +1,0 @@
-set terminal postscript enhanced fontfile '~/.local/share/fonts/AMSFonts/pfb/cmu10.pfb'
-set output 'test.ps'
-set xlabel '{/CMU10 \170}'
-p x t '{/CMU10 x^2}'
