@@ -1,8 +1,4 @@
       program seod
-      ! Commands
-      ! gfortran seodc.f
-      ! gnuplot seod.gnu
-      ! ps2pdf seod.ps
       parameter(n=100)
       real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
       call hmg(h,x,d,e,n)
@@ -171,3 +167,7 @@ c finds sqrt(a**2+b**2)
    20 pythag = p
       return
       end
+      ! Commands
+      ! gfortran seodc.f
+      ! gnuplot seod.gnu
+      ! ps2pdf seod.ps
