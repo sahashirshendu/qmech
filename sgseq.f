@@ -1,63 +1,52 @@
-      program sg_seq
-        integer i, j, ch, chpr, n, ne
-        integer xpl, zpl, xmi, zmi
-        print *, "Choices: SGZ -> Press 1, SGZ -> Press 2"
-        print *, ""
-        print *, "The number of Stern-Gerlach devices:"
+      program sgseq
+        integer, allocatable :: comp(:, :)
+        integer atn, up, down, n, i, j
+        real rand
+
+        print *, "SGX - Press 1"
+        print *, "SGY - Press 2"
+        print *, "SGZ - Press 3"
+        print *,'Number of SG devices ='
         read *, n
-        print *, "The number of electrons:"
-        read *, ne
-
-        xpl = 0
-        xmi = 0
-        zpl = 0
-        zmi = 0
-
-        chpr = 0
+        allocate(comp(n, 3))
         do i = 1, n
-          print *, ""
-          print *, "Device", i
-          print *, "Device Choice ->"
-          read *, ch
-          if (ch .ne. chpr) then
-            if (ch .eq. 1) then
-              xpl = 0
-              xmi = 0
-              do j = 1, ne
-                call random_number(r)
-                if (r .gt. 0.5) then
-                  zpl = zpl + 1
-                else
-                  zmi = zmi + 1
+          print *, 'Choice of device =',i
+          read *, rand
+          comp(i, 1) = rand
+        enddo
+        print *, ''
+        print *, 'Number of atoms :'
+        read *, atn
+
+        do i=1,n
+          if(i .eq. 1) then
+            up = 0
+            do j=1,atn
+              call random_number(rand)
+              if (rand .gt. 0.5) then
+                up = up + 1
+              end if
+            end do
+            down = atn - up
+            comp(i, 2) = up
+            comp(i, 3) = down
+          else
+            atn = up
+            if(comp(i,1) .ne. comp(i-1,1)) then
+              up = 0
+              do j = 1, atn
+                call random_number(rand)
+                if(rand .gt. 0.5) then
+                  up = up + 1
                 end if
               end do
-              ne = zpl
-            else if (ch .eq. 2) then
-              zpl = 0
-              zmi = 0
-              do j = 1, ne
-                call random_number(r)
-                if (r .gt. 0.5) then
-                  xpl = xpl + 1
-                else
-                  xmi = xmi + 1
-                end if
-              end do
-              ne = xpl
-            end if
-          else if (ch .eq. chpr) then
-            if (ch .eq. 1) then
-              ne = zpl
-              zmi = 0
-            else if (ch .eq. 2) then
-              ne = xpl
-              xmi = 0
-            end if
-          end if
-          print *, "Z+ =", zpl
-          print *, "Z- =", zmi
-          print *, "X+ =", xpl
-          print *, "X- =", xmi
-          chpr = ch
-        end do
+            else
+            endif
+            down = atn - up
+            comp(i, 2) = up
+            comp(i, 3) = down
+          endif
+
+          print *, i, (comp(i,j),j=1,3)
+        enddo
       end
