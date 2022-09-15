@@ -1,5 +1,5 @@
-      program schrost
-      parameter(n=100)
+      program ho
+      parameter(n=99)
       real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
       call hmg(h,x,d,e,n)
       write(*,*) "Hamiltonian -"
@@ -19,32 +19,25 @@
 13        continue
 14      continue
         write(*,*) "Eigenvalue", i, " =", d(i)
-        write(*,*) "    Vector", "         Mtx * Vec", "          Ratio"
-        do 15 j=1,n
-          write(*,*) a(j,i),f(j),f(j)/a(j,i)
-15      continue
-        write(*,*) ""
 16    continue
 
-      open(11,file='dschrost')
-      ! open(11,file='dschrost0')
+      open(11,file='ho.txt')
       do 18 i = 1, n
-        write(11,*) x(i), a(i, 1)
+        write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
 18    continue
       end
 
       subroutine hmg(h,x,d,e,n)
       real L,h(n,n),d(n),e(n),v(n),x(n)
-      x0 = 0.
+      x0 = -5.
       L = 10.
       a = L/(n - 1)
       pi = 4.*atan(1.)
       do 11 i = 1,n
         x(i) = x0+(i-1)*a
-        v(i) = sin(pi * ((i-1)*a) / L)
-        ! v(i) = 0.0
-        d(i) = v(i) + 2./a**2
-        e(i) = - 1./a**2
+        v(i) = 0.5*1.*(x0+(i-1)*a)**2
+        d(i) = v(i) + 1./a**2
+        e(i) = - 1./(2*a**2)
 11    continue
       h = 0.
       do 12 i = 1,n
