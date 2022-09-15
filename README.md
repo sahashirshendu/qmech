@@ -1,4 +1,9 @@
 # QMech
 Quantum Mechanics Lab Code
 
-$$-\frac{\hbar^2}{2m}\nabla^2 \psi+V\psi=E\psi$$
+- [Stern-Gerlach Experiment](./deflstern.f)
+- [Sequential Stern-Gerlach Experiment](./seqstern.f)
+- [1D Schrodinger Equation for Sine Potential](./seod.f)
+  - [Plot](./seod.gnu)
+- [Linear Harmonic Oscillator](./seod.f)
+  - [Plot](./seod.gnu)
