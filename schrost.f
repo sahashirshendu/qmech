@@ -1,4 +1,7 @@
-      program seod
+      program schrost
+      ! gfortran schrost.f
+      ! gnuplot schrost.gnu
+      ! ps2pdf schrost.ps
       parameter(n=100)
       real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
       call hmg(h,x,d,e,n)
@@ -26,8 +29,8 @@
         write(*,*) ""
 16    continue
 
-      open(11,file='dseod')
-      ! open(11,file='dseod0')
+      open(11,file='schrost')
+      ! open(11,file='schrost0')
       do 18 i = 1, n
         write(11,*) x(i), a(i, 1)
 18    continue
@@ -167,7 +170,3 @@ c finds sqrt(a**2+b**2)
    20 pythag = p
       return
       end
-      ! Commands
-      ! gfortran seodc.f
-      ! gnuplot seod.gnu
-      ! ps2pdf seod.ps
