@@ -29,8 +29,8 @@
         write(*,*) ""
 16    continue
 
-      open(11,file='schrost')
-      ! open(11,file='schrost0')
+      open(11,file='dschrost')
+      ! open(11,file='dschrost0')
       do 18 i = 1, n
         write(11,*) x(i), a(i, 1)
 18    continue
