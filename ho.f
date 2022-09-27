@@ -17,11 +17,11 @@
         write(*,*) "Eigenvalue", i, " =", d(i)
 16    continue
 
-      sum = a(1,1)**2 + a(n,1)**2
+      sum = 0
       do i=2,n-1
         sum = sum + 2*a(i,1)**2
       enddo
-      int = dx/2. * sum
+      int = dx/2. * (a(1,1)**2 + sum + a(n,1)**2)
       cons = sqrt(1.0/int)
       a = cons * a
       write(*,*) "Normalization Constant =", cons
