@@ -1,7 +1,7 @@
       program ho
       parameter(n=99)
-      real a(n,n),h(n,n),x(n),d(n),e(n),f(n),de
-      call hmg(h,x,d,e,n)
+      real a(n,n),h(n,n),x(n),d(n),e(n),f(n),dx,sum,int
+      call hmg(h,x,d,e,n,dx)
       a = 0.
       do 12 i=1,n
         a(i,i)=1.
@@ -17,14 +17,23 @@
         write(*,*) "Eigenvalue", i, " =", d(i)
 16    continue
 
+      sum = a(1,1)**2 + a(n,1)**2
+      do i=2,n-1
+        sum = sum + 2*a(i,1)**2
+      enddo
+      int = dx/2. * sum
+      cons = sqrt(1.0/int)
+      a = cons * a
+      write(*,*) "Normalization Constant =", cons
+
       open(11,file='ho.txt')
       do 18 i = 1, n
         write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
 18    continue
       end
 
-      subroutine hmg(h,x,d,e,n)
-      real L,h(n,n),d(n),e(n),v(n),x(n)
+      subroutine hmg(h,x,d,e,n,a)
+      real L,h(n,n),d(n),e(n),v(n),x(n),a
       x0 = -5.
       L = 10.
       a = L/(n - 1)
