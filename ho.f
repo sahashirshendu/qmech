@@ -1,18 +1,14 @@
       program ho
       parameter(n=99)
-      real a(n,n),h(n,n),x(n),d(n),e(n),f(n),sum,int
+      real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,d,e,n,dx)
       a = 0.
-      do 12 i=1,n
+      do 13 i=1,n
         a(i,i)=1.
-12    continue
+13    continue
       call tql2(n,n,d,e,a,ierr)
       do 16 i=1,n
         do 14 j=1,n
-          f(j)=0.0
-          do 13 k=1,n
-            f(j)=f(j)+h(j,k)*a(k,i)
-13        continue
 14      continue
         write(*,*) "Eigenvalue", i, " =", d(i)
 16    continue
@@ -64,6 +60,88 @@
           end if
   13    continue
 12    continue
+      end
+
+c converts real symmetric matrix to tridiagonal matrix
+      subroutine tred2(a,n,np,d,e)
+      dimension a(np,np),d(np),e(np)
+      if(n.gt.1)then
+        do 18 i=n,2,-1  
+          l=i-1
+          h=0.
+          scale=0.
+          if(l.gt.1)then
+            do 11 k=1,l
+              scale=scale+abs(a(i,k))
+11          continue
+            if(scale.eq.0.)then
+              e(i)=a(i,l)
+            else
+              do 12 k=1,l
+                a(i,k)=a(i,k)/scale
+                h=h+a(i,k)**2
+12            continue
+              f=a(i,l)
+              g=-sign(sqrt(h),f)
+              e(i)=scale*g
+              h=h-f*g
+              a(i,l)=f-g
+              f=0.
+              do 15 j=1,l
+                a(j,i)=a(i,j)/h
+                g=0.
+                do 13 k=1,j
+                  g=g+a(j,k)*a(i,k)
+13              continue
+                if(l.gt.j)then
+                  do 14 k=j+1,l
+                    g=g+a(k,j)*a(i,k)
+14                continue
+                endif
+                e(j)=g/h
+                f=f+e(j)*a(i,j)
+15            continue
+              hh=f/(h+h)
+              do 17 j=1,l
+                f=a(i,j)
+                g=e(j)-hh*f
+                e(j)=g
+                do 16 k=1,j
+                  a(j,k)=a(j,k)-f*e(k)-g*a(i,k)
+16              continue
+17            continue
+            endif
+          else
+            e(i)=a(i,l)
+          endif
+          d(i)=h
+18      continue
+      endif
+      d(1)=0.
+      e(1)=0.
+      do 23 i=1,n
+        l=i-1
+        if(d(i).ne.0.)then
+          do 21 j=1,l
+            g=0.
+            do 19 k=1,l
+              g=g+a(i,k)*a(k,j)
+19          continue
+            do 20 k=1,l
+              a(k,j)=a(k,j)-g*a(k,i)
+20          continue
+21        continue
+        endif
+        d(i)=a(i,i)
+        a(i,i)=1.
+        if(l.ge.1)then
+          do 22 j=1,l
+            a(i,j)=0.
+            a(j,i)=0.
+22        continue
+        endif
+23    continue
+      return
       end
 
 c finds the eigenvalues and eigenvectors of a tridiagonal matrix
@@ -170,4 +248,51 @@ c finds sqrt(a**2+b**2)
       go to 10
    20 pythag = p
       return
+      end
+
+c inverse of a matrix 'a' is 'c'
+      subroutine inm(a,c,n)
+      real a(n,n), c(n,n), L(n,n), U(n,n), b(n), d(n), x(n)
+      L=0.0
+      U=0.0
+      b=0.0
+      do k=1, n-1
+      do i=k+1,n
+      coeff=a(i,k)/a(k,k)
+      L(i,k) = coeff
+      do j=k+1,n
+      a(i,j) = a(i,j)-coeff*a(k,j)
+      end do
+      end do
+      end do
+      do i=1,n
+      L(i,i) = 1.0
+      end do
+      do j=1,n
+      do i=1,j
+      U(i,j) = a(i,j)
+      end do
+      end do
+      do k=1,n
+      b(k)=1.0
+      d(1) = b(1)
+      do i=2,n
+      d(i)=b(i)
+      do j=1,i-1
+      d(i) = d(i) - L(i,j)*d(j)
+      end do
+      end do
+      x(n)=d(n)/U(n,n)
+      do i = n-1,1,-1
+      x(i) = d(i)
+      do j=n,i+1,-1
+      x(i)=x(i)-U(i,j)*x(j)
+      end do
+      x(i) = x(i)/u(i,i)
+      end do
+      do i=1,n
+      c(i,k) = x(i)
+      end do
+      b(k)=0.0
+      end do
       end
