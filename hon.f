@@ -64,8 +64,8 @@
           end if
   13    continue
 12    continue
-      call inm(g, gi, n)
-      h = matmul(gi, f) + v
+      call inm(g,gi,n)
+      h = -1./(a**2)*matmul(gi, f)*1./12. + v
       end
 
 c converts real symmetric matrix to tridiagonal matrix
