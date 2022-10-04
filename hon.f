@@ -52,7 +52,7 @@
         do 13 j = 1,n
           if (i.eq.j) then
             f(i,j) = -2.
-            f(i,j) = 10.
+            g(i,j) = 10.
             if (j.gt.1) then
               f(i,j-1) = 1.
               g(i,j-1) = 1.
