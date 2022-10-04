@@ -3,7 +3,7 @@
       real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,d,e,n,dx)
       do 12 i=1,n
-        do 13 i=1,n
+        do 13 j=1,n
           a(i,j)=h(i,j)
 13      continue
 12    continue
