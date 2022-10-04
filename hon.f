@@ -1,5 +1,5 @@
       program hon
-      parameter(n=99)
+      parameter(n=102)
       real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,n,dx)
       do 12 i=1,n
