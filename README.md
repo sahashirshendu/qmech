@@ -7,3 +7,5 @@ Quantum Mechanics Lab Code
   - [Plot](./schrost.gnu)
 - [Linear Harmonic Oscillator](./ho.f)
   - [Plot](./ho.gnu)
+- [Linear Harmonic Oscillator (Numerov Method)](./hon.f)
+  - [Plot](./hon.gnu)
