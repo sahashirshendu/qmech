@@ -304,4 +304,3 @@ c inverse of a matrix 'a' is 'c'
       b(k)=0.0
       end do
       end
-
