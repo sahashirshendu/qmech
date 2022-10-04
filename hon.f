@@ -67,7 +67,7 @@
       f=f/(a**2)
       g=g/12.
       call inm(g,gi,n)
-      h = -1./2.*matmul(gi, f) + v
+      h = -1./2.*matmul(gi,f) + v
       end
 
 c converts real symmetric matrix to tridiagonal matrix
