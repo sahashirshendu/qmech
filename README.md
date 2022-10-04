@@ -11,13 +11,16 @@ Quantum Mechanics Lab Code
    plot 'dschrost' w l, 'dschrost0' w l
   ```
 - [Harmonic Oscillator](./ho.f)
-  - Plot
-  ```gnuplot
-  set term post color
-  set out 'ho.ps'
-  set yrange [0:2]
-  plot 'ho.txt' u 1:2 w l title 'Ground State', 'ho.txt' u 1:3 w l title 'Potential'
-  ```
+  - <details>
+      <summary>Plot</summary>
+
+      ```gnuplot
+      set term post color
+      set out 'ho.ps'
+      set yrange [0:2]
+      plot 'ho.txt' u 1:2 w l title 'Ground State', 'ho.txt' u 1:3 w l title 'Potential'
+      ```
+    </details>
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
   - Plot
   ```gnuplot
