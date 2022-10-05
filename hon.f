@@ -11,8 +11,8 @@
       call tql2(n,n,d,e,a,ierr)
       do 16 i=1,n
         do 14 j=1,n
-14      continue
         write(*,*) "Eigenvalue", i, " =", d(i)
+14      continue
 16    continue
 
       sum = 0
