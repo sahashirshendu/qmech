@@ -3,16 +3,16 @@
       real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,n,dx)
       do 12 i=1,n
-        do 13 j=1,n
-          a(i,j)=h(i,j)
-13      continue
+      do 13 j=1,n
+      a(i,j)=h(i,j)
+13    continue
 12    continue
       call tred2(a,n,n,d,e)
       call tql2(n,n,d,e,a,ierr)
       do 16 i=1,n
-        do 14 j=1,n
-        write(*,*) "Eigenvalue", i, " =", d(i)
-14      continue
+      do 14 j=1,n
+      write(*,*) "Eigenvalue", i, " =", d(i)
+14    continue
 16    continue
 
       sum = 0
