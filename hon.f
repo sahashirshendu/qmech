@@ -9,11 +9,11 @@
 12    continue
       call tred2(a,n,n,d,e)
       call tql2(n,n,d,e,a,ierr)
-      do 16 i=1,n
-      do 14 j=1,n
+      do 14 i=1,n
+      do 16 j=1,n
       write(*,*) "Eigenvalue", i, " =", d(i)
-14    continue
 16    continue
+14    continue
 
       sum = 0
       do i=2,n-1
