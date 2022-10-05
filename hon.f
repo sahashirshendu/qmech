@@ -50,12 +50,12 @@
             if (j.gt.1) then
               f(i,j-1) = 1.
               g(i,j-1) = 1.
-            end if
+            endif
             if (j.lt.n) then
               f(i,j+1) = 1.
               g(i,j+1) = 1.
-            end if
-          end if
+            endif
+          endif
   13    continue
 12    continue
       g=g/12.
@@ -263,17 +263,17 @@ c inverse of a matrix 'a' is 'c'
       L(i,k) = coeff
       do j=k+1,n
       a(i,j) = a(i,j)-coeff*a(k,j)
-      end do
-      end do
-      end do
+      enddo
+      enddo
+      enddo
       do i=1,n
       L(i,i) = 1.0
-      end do
+      enddo
       do j=1,n
       do i=1,j
       U(i,j) = a(i,j)
-      end do
-      end do
+      enddo
+      enddo
       do k=1,n
       b(k)=1.0
       d(1) = b(1)
@@ -281,19 +281,19 @@ c inverse of a matrix 'a' is 'c'
       d(i)=b(i)
       do j=1,i-1
       d(i) = d(i) - L(i,j)*d(j)
-      end do
-      end do
+      enddo
+      enddo
       x(n)=d(n)/U(n,n)
       do i = n-1,1,-1
       x(i) = d(i)
       do j=n,i+1,-1
       x(i)=x(i)-U(i,j)*x(j)
-      end do
+      enddo
       x(i) = x(i)/u(i,i)
-      end do
+      enddo
       do i=1,n
       c(i,k) = x(i)
-      end do
+      enddo
       b(k)=0.0
-      end do
+      enddo
       end
