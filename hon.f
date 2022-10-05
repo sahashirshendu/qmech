@@ -17,7 +17,7 @@
 
       sum = 0
       do i=2,n-1
-        sum = sum+2*a(i,1)**2
+      sum = sum+2*a(i,1)**2
       enddo
       int = dx/2. * (a(1,1)**2 + sum + a(n,1)**2)
       cons = sqrt(1.0/int)
@@ -26,7 +26,7 @@
 
       open(11,file='hon.txt')
       do 18 i = 1, n
-        write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
+      write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
 18    continue
       end
 
