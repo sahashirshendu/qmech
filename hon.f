@@ -39,24 +39,24 @@
       f = 0.
       g = 0.
       do 11 i = 1,n
-        x(i) = x0+(i-1)*a
-        v(i,i) = 0.5*1.*(x0+(i-1)*a)**2
+      x(i) = x0+(i-1)*a
+      v(i,i) = 0.5*1.*(x0+(i-1)*a)**2
 11    continue
       do 12 i = 1,n
-        do 13 j = 1,n
-          if (i.eq.j) then
-            f(i,j) = -2.
-            g(i,j) = 10.
-            if (j.gt.1) then
-              f(i,j-1) = 1.
-              g(i,j-1) = 1.
-            endif
-            if (j.lt.n) then
-              f(i,j+1) = 1.
-              g(i,j+1) = 1.
-            endif
-          endif
-  13    continue
+      do 13 j = 1,n
+      if (i.eq.j) then
+      f(i,j) = -2.
+      g(i,j) = 10.
+      if (j.gt.1) then
+      f(i,j-1) = 1.
+      g(i,j-1) = 1.
+      endif
+      if (j.lt.n) then
+      f(i,j+1) = 1.
+      g(i,j+1) = 1.
+      endif
+      endif
+13    continue
 12    continue
       g=g/12.
       call inm(g,gi,n)
