@@ -251,7 +251,7 @@ c finds sqrt(a**2+b**2)
       return
       end
 
-c inverse of a matrix 'a' is 'c'
+c inverse of matrix
       subroutine inm(a,c,n)
       real a(n,n), c(n,n), L(n,n), U(n,n), b(n), d(n), x(n)
       L=0.0
