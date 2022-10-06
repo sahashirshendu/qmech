@@ -21,12 +21,12 @@
       write(*,*) "Normalization Constant =", cons
 
       open(11,file='ho.txt')
-      do 18 i = 1, n
+      do 18 i=1,n
       write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
 18    continue
 
       open(12,file='hoa.txt')
-      do 19 i = 1, n
+      do 19 i=1,n
       write(12,*) x(i), 0.75*a(i,1)+d(1), 0.75*a(i,2)+d(2),
      &  0.5*x(i)**2
 19    continue
