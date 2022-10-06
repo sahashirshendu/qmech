@@ -35,6 +35,7 @@
       a = L/(n - 1)
       f = 0.
       g = 0.
+      hi = 0.
       do 11 i = 1,n
       x(i) = x0+(i-1)*a
       v(i) = 0.5*1.*(x0+(i-1)*a)**2
@@ -56,16 +57,25 @@
 13    continue
 12    continue
       call inm(g,gi,n)
-      hi = matmul(gi,f)
       do 14 i=1,n
       do 15 j=1,n
+      do 16 k=1,n
+      hi(i,j) = hi(i,j) + gi(i,k) * f(k,j)
+16    continue
+15    continue
+14    continue
+      end do
+      end do
+      end	do
+      do 17 i=1,n
+      do 18 j=1,n
       if (i.eq.j) then
       h(i,j) = hi(i,j) + v(i)
       else
       h(i,j) = hi(i,j)
       end if
-15    continue
-14    continue
+18    continue
+17    continue
       end
 
 c converts real symmetric matrix to tridiagonal matrix
