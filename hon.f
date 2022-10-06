@@ -64,9 +64,6 @@
 16    continue
 15    continue
 14    continue
-      end do
-      end do
-      end	do
       do 17 i=1,n
       do 18 j=1,n
       if (i.eq.j) then
