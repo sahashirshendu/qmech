@@ -4,18 +4,16 @@
       call hmg(h,x,d,e,n,dx)
       a = 0.
       do 13 i=1,n
-        a(i,i)=1.
+      a(i,i)=1.
 13    continue
       call tql2(n,n,d,e,a,ierr)
       do 16 i=1,n
-        do 14 j=1,n
-14      continue
-        write(*,*) "Eigenvalue", i, " =", d(i)
+      write(*,*) "Eigenvalue", i, " =", d(i)
 16    continue
 
       sum = 0
       do i=2,n-1
-        sum = sum + 2*a(i,1)**2
+      sum = sum + 2*a(i,1)**2
       enddo
       int = dx/2. * (a(1,1)**2 + sum + a(n,1)**2)
       cons = sqrt(1.0/int)
@@ -24,12 +22,12 @@
 
       open(11,file='ho.txt')
       do 18 i = 1, n
-        write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
+      write(11,*) x(i), a(i,1)+d(1), 0.5*x(i)**2
 18    continue
 
       open(12,file='hoa.txt')
       do 19 i = 1, n
-        write(12,*) x(i), 0.75*a(i,1)+d(1), 0.75*a(i,2)+d(2),
+      write(12,*) x(i), 0.75*a(i,1)+d(1), 0.75*a(i,2)+d(2),
      &  0.5*x(i)**2
 19    continue
       end
@@ -41,24 +39,24 @@
       a = L/(n - 1)
       pi = 4.*atan(1.)
       do 11 i = 1,n
-        x(i) = x0+(i-1)*a
-        v(i) = 0.5*1.*(x0+(i-1)*a)**2
-        d(i) = v(i) + 1./a**2
-        e(i) = - 1./(2*a**2)
+      x(i) = x0+(i-1)*a
+      v(i) = 0.5*1.*(x0+(i-1)*a)**2
+      d(i) = v(i) + 1./a**2
+      e(i) = - 1./(2*a**2)
 11    continue
       h = 0.
       do 12 i = 1,n
-        do 13 j = 1,n
-          if (i.eq.j) then
-            h(i,j) = d(i)
-            if (j.gt.1) then
-              h(i,j-1) = e(i)
-            end if
-            if (j.lt.n) then
-              h(i,j+1) = e(i)
-            end if
-          end if
-  13    continue
+      do 13 j = 1,n
+      if (i.eq.j) then
+      h(i,j) = d(i)
+      if (j.gt.1) then
+      h(i,j-1) = e(i)
+      end if
+      if (j.lt.n) then
+      h(i,j+1) = e(i)
+      end if
+      end if
+13    continue
 12    continue
       end
 
