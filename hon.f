@@ -43,22 +43,21 @@
       do 12 i=1,n
       do 13 j=1,n
       if (i.eq.j) then
-      f(i,j) = -2.
-      g(i,j) = 10.
+      f(i,j) = 2.*1./(2.*a**2)
+      g(i,j) = 10./12.
       if (j.gt.1) then
-      f(i,j-1) = 1.
-      g(i,j-1) = 1.
+      f(i,j-1) = -1./(2.*a**2)
+      g(i,j-1) = 1./12.
       endif
       if (j.lt.n) then
-      f(i,j+1) = 1.
-      g(i,j+1) = 1.
+      f(i,j+1) = -1./(2.*a**2)
+      g(i,j+1) = 1./12.
       endif
       endif
 13    continue
 12    continue
-      g=g/12.
       call inm(g,gi,n)
-      hi = -1./(2.*a**2)*matmul(gi,f)
+      hi = matmul(gi,f)
       do 14 i=1,n
       do 15 j=1,n
       if (i.eq.j) then
