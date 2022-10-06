@@ -60,7 +60,7 @@
       do 14 i=1,n
       do 15 j=1,n
       do 16 k=1,n
-      hi(i,j) = hi(i,j) + gi(i,k) * f(k,j)
+      hi(i,j) = hi(i,j) + gi(i,k)*f(k,j)
 16    continue
 15    continue
 14    continue
