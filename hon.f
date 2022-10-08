@@ -269,7 +269,7 @@ c inverse of matrix
       L=0.0
       U=0.0
       b=0.0
-      do k=1, n-1
+      do k=1,n-1
       do i=k+1,n
       coeff=a(i,k)/a(k,k)
       L(i,k) = coeff
@@ -296,7 +296,7 @@ c inverse of matrix
       enddo
       enddo
       x(n)=d(n)/U(n,n)
-      do i = n-1,1,-1
+      do i=n-1,1,-1
       x(i) = d(i)
       do j=n,i+1,-1
       x(i)=x(i)-U(i,j)*x(j)
