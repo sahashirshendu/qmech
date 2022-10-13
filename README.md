@@ -23,6 +23,7 @@ Quantum Mechanics Lab Code
   ```gnuplot
   set term post color
   set out 'hoa.ps'
+  set yrange [-100:-50]
   plot 'hoa.txt' u 1:2 w l title 'Ground State', 'hoa.txt' u 1:3 w l title 'Potential'
   ```
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
