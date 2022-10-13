@@ -18,6 +18,13 @@ Quantum Mechanics Lab Code
   set yrange [0:2]
   plot 'ho.txt' u 1:2 w l title 'Ground State', 'ho.txt' u 1:3 w l title 'Potential'
   ```
+- [Anharmonic Oscillator](./hoa.f)
+  - Plot
+  ```gnuplot
+  set term post color
+  set out 'hoa.ps'
+  plot 'hoa.txt' u 1:2 w l title 'Ground State', 'hoa.txt' u 1:3 w l title 'Potential'
+  ```
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
   - Plot
   ```gnuplot
