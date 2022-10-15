@@ -22,7 +22,7 @@
 
       open(11,file='hoa.txt')
       do 18 i=1,n
-      write(11,*) x(i), a(i,1)+d(1), 0.5*1.*x(i)**2+x(i)**3
+      write(11,*) x(i), a(i,1)
 18    continue
       end
 
