@@ -26,6 +26,7 @@ Quantum Mechanics Lab Code
   set yrange [-100:-50]
   plot 'hoa.txt' u 1:2 w l title 'Ground State', 'hoa.txt' u 1:3 w l title 'Potential'
   ```
+- [$\epsilon(r)$ vs $r$]()
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
   - Plot
   ```gnuplot
