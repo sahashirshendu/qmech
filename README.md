@@ -27,6 +27,12 @@ Quantum Mechanics Lab Code
   plot 'hoa.txt' u 1:2 w l title 'Ground State', 'hoa.txt' u 1:3 w l title 'Potential'
   ```
 - [ε(r) vs r](./hoe.f)
+  - Plot
+  ```gnuplot
+  set term post color
+  set out 'hoe.ps'
+  plot 'hoe.txt'
+  ```
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
   - Plot
   ```gnuplot
