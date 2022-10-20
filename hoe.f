@@ -2,9 +2,9 @@
       parameter(n=150)
       real a(n,n),h(n,n),x(n),d(n),e(n),k1(n)
       open(11,file='hoe.txt')
-      do i=1,n
+      do 11 i=1,n
       k1(i)=(i-1)*5.0/n
-      enddo
+11    continue
       do 12 j=1,n
       call hmg(h,x,d,e,n,dx,k1(j))
       a = 0.
