@@ -1,6 +1,7 @@
-      program hoa
+      program hoe
       parameter(n=150)
       real a(n,n),h(n,n),x(n),d(n),e(n),k1(n)
+      open(11,file='hoe.txt')
       do i=1,n
       k1(i)=(i-1)*5.0/n
       enddo
@@ -11,13 +12,8 @@
       a(i,i)=1.
 13    continue
       call tql2(n,n,d,e,a,ierr)
-      print *, k1(j), d(1)
+      write(11,*) k1(j), d(1)
 12    continue
-
-      open(11,file='hoe.txt')
-      do 18 i=1,n
-      write(11,*) x(i), a(i,1)
-18    continue
       end
 
       subroutine hmg(h,x,d,e,n,a,k1)
