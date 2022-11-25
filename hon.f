@@ -1,9 +1,9 @@
       program numerov
-      integer,parameter :: n=100
-      real,dimension(n) :: x,psi
-      real en,e1,e2,env,k2,e,h,L
-      common x,psi,en,h
-      external env
+      integer,parameter::n=100
+      real,dimension(n)::x,psi
+      real e1,e2,f,k2,e,h,L
+      common x,psi,h
+      external f
 
       open(1,file='hon.txt')
       L = 8
@@ -15,7 +15,7 @@
 12    continue
       do 11 i = 1,100
       e = (e1+e2)/2
-      if ((env(e)*env(e2)).le.0) then
+      if ((f(e)*f(e2)).le.0) then
       e1 = e
       else
       e2 = e
@@ -29,13 +29,12 @@
       stop
       end
 
-      function env(energy)
-      integer, parameter :: n=100
-      real, dimension(n) :: x,psi,k2
-      common x,psi,en,h
-      en = energy
+      function f(e)
+      integer,parameter::n=100
+      real,dimension(n)::x,psi,k2
+      common x,psi,h
       do i = 1,n
-        k2(i) = 2.*(en-.5*x(i)**2)
+        k2(i) = 2.*(e-.5*x(i)**2)
       end do
       psi(1) = 0.
       psi(2) = 1.0e-5
@@ -43,6 +42,6 @@
         psi(i+1) = ((2.-5.*h**2/6.*k2(i))*psi(i)
      & -(1.+h**2/12.*k2(i-1))*psi(i-1))/(1.+h**2/12.*k2(i+1))
       end do
-      env = psi(n)
+      f = psi(n)
       return
       end
