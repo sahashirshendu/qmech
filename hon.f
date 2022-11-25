@@ -1,23 +1,30 @@
       program numerov
       integer, parameter :: n = 100
       real, dimension(n) :: x, wfn
-      real en, emin, emax, energy, enval, k2, dx, xmin, L
+      real en, e1, e2, energy, enval, k2, e, dx, L
       common x, wfn, en, dx
       external enval
 
       open(1,file='hon.txt')
       L = 8
-      xmin = - 0.5 * L
-      emin = 0.0
-      emax = 1.0
+      e1 = 0
+      e2 = 1
 
       dx = L / (n - 1)
       do i = 1, n
-         x(i) = xmin + (i - 1) * dx
+         x(i) = - .5 * L + (i - 1) * dx
       end do
 
-      call bisection(enval, emin, emax, energy)
-      write(*,*) 'Energy =', energy
+      do 11 i = 1, 100
+      e = (e1 + e2) / 2
+      if ((enval(e) * enval(e2)) .le. 0.0) then
+      e1 = e
+      else
+      e2 = e
+      end if
+      if (abs((e2 - e1) / e2) .lt. 0.000001) exit
+11    continue
+      write(*,*) 'Energy =', e
 
       do i = 1, n
       write (1, *) x(i), wfn(i)
@@ -43,19 +50,5 @@
         wfn(i + 1) = (cz * wfn(i) - cm * wfn(i - 1)) / cp
       end do
       enval = wfn(n)
-      return
-      end
-
-      subroutine bisection(f, a, b, x)
-      do 11 i = 1, 100
-      x = (a + b) / 2
-      if ((f(x) * f(b)) .le. 0.0) then
-      a = x
-      else
-      b = x
-      end if
-      err = abs((b - a) / b)
-      if (err .lt. 0.000001) exit
-11    continue
       return
       end
