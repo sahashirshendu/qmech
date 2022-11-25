@@ -1,4 +1,4 @@
-      program numerov
+      program hon
       integer,parameter::n=100
       real,dimension(n)::x,psi
       real e1,e2,f,k2,e,h,L
