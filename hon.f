@@ -18,13 +18,12 @@
       else
       e2=e
       end if
-      if (abs((e2-e1)/e2).lt.0.000001) exit
+      if (abs((e2-e1)/e2).lt.0.000001) goto 13
 12    continue
-      write(*,*) 'Energy =',e
-      do 13 i=1,n
+13    write(*,*) 'Energy =',e
+      do 14 i=1,n
       write(10,*) x(i),psi(i)
-13    continue
-      stop
+14    continue
       end
 
       function f(e)
