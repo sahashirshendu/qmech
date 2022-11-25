@@ -3,7 +3,6 @@
       real,dimension(n)::x,psi
       real f,L
       common x,psi,h
-      external f
 
       open(1,file='hon.txt')
       L = 8
