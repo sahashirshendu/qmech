@@ -30,16 +30,16 @@
 
       function f(e)
       integer,parameter::n=100
-      real,dimension(n)::x,psi,k2
+      real,dimension(n)::x,psi,l
       common x,psi,h
       do 13 i = 1,n
-      k2(i) = 2.*(e-.5*x(i)**2)
+      l(i) = 2.*(e-.5*x(i)**2)
 13    continue
       psi(1) = 0
       psi(2) = 1e-5
       do 14 i = 2,n-1
-      psi(i+1) = ((2-5*h**2/6*k2(i))*psi(i)
-     & -(1+h**2/12*k2(i-1))*psi(i-1))/(1+h**2/12*k2(i+1))
+      psi(i+1) = ((2-5*h**2/6*l(i))*psi(i)
+     & -(1+h**2/12*l(i-1))*psi(i-1))/(1+h**2/12*l(i+1))
 14    continue
       f = psi(n)
       return
