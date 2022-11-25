@@ -38,7 +38,7 @@
 13    continue
       psi(1) = 0
       psi(2) = 1e-5
-      do 14 i = 2,n-1,1
+      do 14 i = 2,n-1
       psi(i+1) = ((2.-5.*h**2/6.*k2(i))*psi(i)
      & -(1.+h**2/12.*k2(i-1))*psi(i-1))/(1.+h**2/12.*k2(i+1))
 14    continue
