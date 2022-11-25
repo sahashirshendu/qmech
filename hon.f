@@ -3,8 +3,7 @@
       real,dimension(n)::x,psi
       real f,L
       common x,psi,h
-
-      open(1,file='hon.txt')
+      open(10,file='hon.txt')
       L = 8
       e1 = 0
       e2 = 1
@@ -23,7 +22,7 @@
 12    continue
       write(*,*) 'Energy =',e
       do i = 1,n
-      write(1,*) x(i),psi(i)
+      write(10,*) x(i),psi(i)
       end do
       stop
       end
