@@ -10,10 +10,10 @@
       e1 = 0
       e2 = 1
       h = L/(n-1)
-      do 12 i = 1,n
+      do 11 i = 1,n
       x(i) = -.5*L+(i-1)*h
-12    continue
-      do 11 i = 1,100
+11    continue
+      do 12 i = 1,100
       e = (e1+e2)/2
       if ((f(e)*f(e2)).le.0) then
       e1 = e
@@ -21,7 +21,7 @@
       e2 = e
       end if
       if (abs((e2-e1)/e2).lt.0.000001) exit
-11    continue
+12    continue
       write(*,*) 'Energy =',e
       do i = 1,n
       write(1,*) x(i),psi(i)
@@ -33,15 +33,15 @@
       integer,parameter::n=100
       real,dimension(n)::x,psi,k2
       common x,psi,h
-      do i = 1,n
+      do 13 i = 1,n
         k2(i) = 2.*(e-.5*x(i)**2)
-      end do
-      psi(1) = 0.
-      psi(2) = 1.0e-5
-      do i = 2,n-1,1
+13    continue
+      psi(1) = 0
+      psi(2) = 1e-5
+      do 14 i = 2,n-1,1
         psi(i+1) = ((2.-5.*h**2/6.*k2(i))*psi(i)
      & -(1.+h**2/12.*k2(i-1))*psi(i-1))/(1.+h**2/12.*k2(i+1))
-      end do
+14    continue
       f = psi(n)
       return
       end
