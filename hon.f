@@ -1,8 +1,8 @@
       program numerov
       integer,parameter :: n=100
       real,dimension(n) :: x,psi
-      real en, e1, e2, energy, env, k2, e, h, L
-      common x, psi, en, h
+      real en,e1,e2,env,k2,e,h,L
+      common x,psi,en,h
       external env
 
       open(1,file='hon.txt')
@@ -21,9 +21,9 @@
       else
       e2 = e
       end if
-      if (abs((e2-e1)/e2) .lt. 0.000001) exit
+      if (abs((e2-e1)/e2).lt.0.000001) exit
 11    continue
-      write(*,*) 'Energy =', e
+      write(*,*) 'Energy =',e
 
       do i = 1,n
       write(1,*) x(i),psi(i)
