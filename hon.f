@@ -13,10 +13,10 @@
 11    continue
       do 12 i=1,100
       e=(e1+e2)/2
-      if (f(e).gt.0) then
-      e1=e
-      else
+      if (f(e).lt.0) then
       e2=e
+      else
+      e1=e
       endif
       if (abs((e2-e1)/e2).lt.0.000001) goto 13
 12    continue
