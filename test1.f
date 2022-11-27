@@ -18,7 +18,7 @@
       else
       e1=e
       endif
-      if (abs((e1-e2)/e1).lt.0.00001) goto 13
+      if (abs((e1-e2)/e1).lt.0.000001) goto 13
 12    continue
 13    write(*,*) 'Energy =',e
       do 14 i=1,n
