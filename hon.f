@@ -13,7 +13,7 @@
 11    continue
       do 12 i=1,100
       e=(e1+e2)/2
-      if ((f(e)*f(e2)).le.0) then
+      if (f(e).gt.0) then
       e1=e
       else
       e2=e
