@@ -1,5 +1,5 @@
       program hoe
-      parameter(n=150)
+      parameter(n=151)
       real a(n,n),h(n,n),x(n),d(n),e(n),k1(n)
       open(11,file='hoe.txt')
       do 11 i=1,n

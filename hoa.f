@@ -1,5 +1,5 @@
       program hoa
-      parameter(n=150)
+      parameter(n=151)
       real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,d,e,n,dx)
       a = 0.
