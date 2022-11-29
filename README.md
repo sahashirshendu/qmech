@@ -24,7 +24,7 @@ Quantum Mechanics Lab Code
   set term post color
   set out 'hoa.ps'
   set yrange [-100:-50]
-  plot 'hoa.txt' u 1:2 w l title 'Ground State', 'hoa.txt' u 1:3 w l title 'Potential'
+  plot 'hoa.txt' w l title 'Ground State'
   ```
 - [ε(r) vs r](./hoe.f)
   - Plot
