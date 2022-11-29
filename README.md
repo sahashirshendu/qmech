@@ -6,9 +6,9 @@ Quantum Mechanics Lab Code
 - [1D Schrodinger Equation for Sine Potential](./schrost.f)
   - Plot
   ```gnuplot
-   set term post
-   set out 'schrost.ps'
-   plot 'dschrost' w l, 'dschrost0' w l
+  set term post
+  set out 'schrost.ps'
+  plot 'dschrost' w l, 'dschrost0' w l
   ```
 - [Harmonic Oscillator](./ho.f)
   - Plot
@@ -31,7 +31,7 @@ Quantum Mechanics Lab Code
   ```gnuplot
   set term post color
   set out 'hoe.ps'
-  plot 'hoe.txt'
+  plot 'hoe.txt' w l
   ```
 - [Harmonic Oscillator (Numerov Method)](./hon.f)
   - Plot
