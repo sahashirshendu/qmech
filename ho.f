@@ -1,5 +1,5 @@
       program ho
-      parameter(n=100)
+      parameter(n=101)
       real a(n,n),h(n,n),x(n),d(n),e(n),sum,int
       call hmg(h,x,d,e,n,dx)
       a = 0.
