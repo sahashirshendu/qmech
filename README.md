@@ -40,5 +40,3 @@ Quantum Mechanics Lab Code
   set out 'hon.ps'
   plot 'hon.txt' u 1:2 w l
   ```
-
-![Repository Stats](https://github-readme-stats.vercel.app/api?username=sahashirshendu&show_icons=true)
