@@ -23,7 +23,6 @@ Quantum Mechanics Lab Code
   ```gnuplot
   set term post color
   set out 'hoa.ps'
-  set yrange [-100:-50]
   plot 'hoa.txt' w l title 'Ground State'
   ```
 - [ε(r) vs r](./hoe.f)
